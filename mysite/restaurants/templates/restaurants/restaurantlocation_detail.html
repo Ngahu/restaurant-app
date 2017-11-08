@@ -1,0 +1,12 @@
+{% extends "restaurants/base.html" %}
+{% block content %}
+
+<h4 style="text-align:center;">Restaurant Detail Page</h4>
+<div style="text-align:center;">
+
+<h3>{{object.name}} <small>{{object.category}}</small></h3>
+<p>{{object.location}}</p>
+<p>Added:{{object.timestamp}} <br> Updated:{{object.updated|timesince}} ago</p>
+{% endblock content %}
+
+
