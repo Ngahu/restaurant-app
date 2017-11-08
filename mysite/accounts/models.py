@@ -62,6 +62,18 @@ class User(AbstractBaseUser):
     def __unicode__(self):
         return self.email
 
+    def get_full_name(self):
+        return self.email
+
+    def get_short_name(self):
+        return self.email
+
+    def has_perm(self,perm,obj=None):
+        return True
+
+    def has_module_perms(self,app_label):
+        return True
+
     USERNAME_FIELD = 'email'
 
     @property

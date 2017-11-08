@@ -2,11 +2,12 @@
         {% block content %}
 
         <h4 style="text-align:center;">Restaurant List View</h4>
-
+        <div style="text-align:center;">
         {% for obj in object_list %}
         <li>Name:{{ obj.name }} <br>   location:{{ obj.location }} <br> category:{{ obj.category }}  <br> Created:{{ obj.timestamp }} <br> Updated:{{ obj.updated }}</li>
         <hr>
         {% endfor %}
     
       {% endblock content %}
+    </div>
   
