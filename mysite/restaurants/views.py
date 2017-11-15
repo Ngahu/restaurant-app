@@ -1,9 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView,CreateView
 from django.shortcuts import render,get_object_or_404
 from .models import RestaurantLocation
 from django.db.models import Q
+from .forms import RestaurantLocationCreateForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+# Create your models here.
+
+
+
 
 def restaurant_listview(request):
     queryset = RestaurantLocation.objects.all()
@@ -34,13 +41,21 @@ class RestaurantListView(ListView):
 class RestaurantDetailView(DetailView):
     queryset = RestaurantLocation.objects.all()
 
-    # def get_context_data(self,*args, **kwargs):
-    #     print(self.kwargs)
-    #     context = super(RestaurantDetailView, self).get_context_data(*args,**kwargs)
-    #     print(context)
-    #     return context
+    # def get_object(self,*args,**kwargs):
+    #     rest_id = self.kwargs.get('rest_id')
+    #     obj = get_object_or_404(RestaurantLocation,id=rest_id)
+    #     return obj
 
-    def get_object(self,*args,**kwargs):
-        rest_id = self.kwargs.get('rest_id')
-        obj = get_object_or_404(RestaurantLocation,id=rest_id)
-        return obj
+
+
+class RestaurantCreateView(LoginRequiredMixin,CreateView):
+    form_class = RestaurantLocationCreateForm
+    template_name = 'restaurants/form.html'
+    success_url = "/restaurants/"
+
+
+    def form_valid(self,form):
+        instance = form.save(commit=False)
+        instance.owner = self.request.user
+        return super(RestaurantCreateView,self).form_valid(form)
+    
