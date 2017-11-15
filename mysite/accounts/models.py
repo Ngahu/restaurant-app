@@ -9,13 +9,16 @@ from django.contrib.auth.models import (
 # Create your models here.
 
 class UserManager(BaseUserManager):
-    def create_user(self,email,password=None,is_active=True,is_staff=False,is_admin=False):
+    def create_user(self,email,full_name,password=None,is_active=True,is_staff=False,is_admin=False):
         if not email:
             raise ValueError("Users Must have an email Adress!")
             if not password:
                 raise ValueError("User Must Have a Password!!")
+        if not full_name:
+            raise ValueError("You must have a Full Name")
         user_obj = self.model(
-            email = self.normalize_email(email)
+            email = self.normalize_email(email),
+            full_name = full_name
 
         )
         user_obj.set_password(password)
@@ -25,18 +28,20 @@ class UserManager(BaseUserManager):
         user_obj.save(using=self._db)
         return user_obj 
 
-    def create_staffuser(self,email,password=None):
+    def create_staffuser(self,email,full_name,password=None):
         user = self.create_user(
             email,
+            full_name,
             password=password,
             is_staff=True
         )
         return user
 
 
-    def create_superuser(self,email,password=None):
+    def create_superuser(self,email,full_name,password=None):
         user = self.create_user(
             email,
+            full_name,
             password=password,
             is_staff=True,
             is_admin=True
@@ -48,12 +53,14 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
     email     =     models.EmailField(max_length=255,unique=True)
+    full_name =     models.CharField(max_length=255) 
     active    =     models.BooleanField(default=True) # can login or not 
     staff     =     models.BooleanField(default=False) # staff user non super user
     admin     =     models.BooleanField(default=False) #super user 
     timestamp =     models.DateTimeField(auto_now_add=True)
 
-
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['full_name']
     objects = UserManager()
 
     def __str__(self):
