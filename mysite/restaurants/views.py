@@ -58,4 +58,6 @@ class RestaurantCreateView(LoginRequiredMixin,CreateView):
         instance = form.save(commit=False)
         instance.owner = self.request.user
         return super(RestaurantCreateView,self).form_valid(form)
-    
+
+
+#FIXME:4:36:58
