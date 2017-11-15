@@ -69,8 +69,11 @@ class User(AbstractBaseUser):
     def __unicode__(self):
         return self.email
 
-    def get_full_name(self):
-        return self.email
+    def  get_full_name(self):
+        if self.full_name:
+            return self.full_name
+        else:
+            return self.email
 
     def get_short_name(self):
         return self.email
