@@ -1,0 +1,38 @@
+{% extends "restaurants/base.html" %}
+{% block content %}
+
+<h4 style="text-align:center;">Menu List View</h4>
+<div style="text-align:center;">
+{% for obj in object_list %}
+<li><a href="{{ obj.get_absolute_url }}">{{ obj.name }}</a></li>
+    {% if obj.contents %}
+    
+    Contents
+            <ol>
+                
+                {% for item in obj.get_contents  %}
+                    <li>{{item}}</li>
+                {% endfor %}
+                    
+            </ol>
+            {% endif %}
+
+            {% if obj.excludes %}
+
+            Excludes
+            <ol>
+                
+                {% for item in obj.get_excludes  %}
+                    <li>{{item}}</li>
+                {% endfor %}
+                    
+            </ol>
+
+            {% endif %}
+
+{% endfor %}
+
+</div>
+{% endblock content %}
+
+

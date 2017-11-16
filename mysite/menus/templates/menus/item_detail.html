@@ -1,0 +1,38 @@
+
+{% extends "restaurants/base.html" %}
+{% block content %}
+
+<h4 style="text-align:center;">Menu Detail View</h4>
+<div style="text-align:center;">
+    <h3>{{object.name}} <br>
+Location: <small>{{object.restaurant.name}}</small></h3>
+
+    {% if object.contents %}
+    
+    Contents
+            <ol>
+                
+                {% for item in object.get_contents  %}
+                    <li>{{item}}</li>
+                {% endfor %}
+                    
+            </ol>
+            {% endif %}
+
+            {% if object.excludes %}
+
+            Excludes
+            <ol>
+                
+                {% for item in object.get_excludes  %}
+                    <li>{{item}}</li>
+                {% endfor %}
+                    
+            </ol>
+
+            {% endif %}
+
+</div>
+{% endblock content %}
+
+

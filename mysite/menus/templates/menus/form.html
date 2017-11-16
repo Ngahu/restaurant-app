@@ -1,0 +1,16 @@
+{% extends "restaurants/base.html" %}
+{% block content %}
+
+<h4 style="text-align:center;">Menu CREATE FORM</h4>
+<div style="text-align:center;">
+<h3>{{title}}</h3>
+    <form action="" method="POST"> {% csrf_token %}
+        {{form.as_p}}
+        <input type="Submit" name="SUBMIT" class="btn btn-success">
+
+    </form>
+
+</div>
+{% endblock content %}
+
+

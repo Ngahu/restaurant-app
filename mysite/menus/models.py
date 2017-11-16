@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.conf import settings
 from restaurants.models import RestaurantLocation
@@ -18,6 +18,10 @@ class Item(models.Model):
     timestamp   = models.DateTimeField(auto_now_add=True)  #when it was created/ added
     updated     = models.DateTimeField(auto_now=True) #when it was updated/changed
 
+    def get_absolute_url(self):
+        return reverse('Menus:detail', kwargs={'pk': self.pk})
+
+    
     class Meta:
         ordering = ['-updated','-timestamp']
     
@@ -26,3 +30,6 @@ class Item(models.Model):
 
     def get_excludes(self):
         return self.excludes.split(",")
+    def __str__(self):
+        return self.name
+
