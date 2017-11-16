@@ -1,0 +1,23 @@
+{% extends "restaurants/base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div style="text-align:center;">
+    <h2>LOGIN FORM</h2>  <hr>
+{% if form.errors %}
+    <p>Your username and password didnt match .Please try Again </p>
+{% endif %}
+    <form method="POST" action=""> {% csrf_token %}
+        {{form.as_p}}
+        <input type="Submit" name="SUBMIT" class="btn btn-success">
+        
+
+    </form>
+
+  
+</div>
+
+
+{% endblock content %}
+
+

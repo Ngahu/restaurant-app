@@ -51,7 +51,7 @@ class RestaurantDetailView(DetailView):
 class RestaurantCreateView(LoginRequiredMixin,CreateView):
     form_class = RestaurantLocationCreateForm
     template_name = 'restaurants/form.html'
-    success_url = "/restaurants/"
+    #success_url = "/restaurants/"
 
 
     def form_valid(self,form):
@@ -60,4 +60,19 @@ class RestaurantCreateView(LoginRequiredMixin,CreateView):
         return super(RestaurantCreateView,self).form_valid(form)
 
 
-#FIXME:4:36:58
+
+def about(request):
+    context = {
+        "title":"THIS IS THE ABOUT PAGE"
+    }
+    template_name = 'restaurants/about.html'
+    return render(request,template_name,context)
+    
+
+
+def home(request):
+    context = {
+        "title":"THIS IS THE HOME PAGE"
+    }
+    template_name = 'restaurants/home.html'
+    return render(request,template_name,context)

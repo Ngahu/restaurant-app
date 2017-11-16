@@ -4,7 +4,7 @@
         <h4 style="text-align:center;">Restaurant List View</h4>
         <div style="text-align:center;">
         {% for obj in object_list %}
-        <li><a href="/restaurants/{{obj.slug}}/">{{ obj }}</a></li>
+        <li><a href="{{ obj.get_absolute_url }}">{{ obj }}</a></li>
        Name:{{ obj.name }} <br>   location:{{ obj.location }} <br> category:{{ obj.category }}  <br> Created:{{ obj.timestamp }} <br> Updated:{{ obj.updated }}
         <hr>
         {% endfor %}
