@@ -6,5 +6,5 @@ from django.contrib.auth.views import LoginView
 
 
 urlpatterns = [
-    url(r'^accounts/login/$',LoginView.as_view(),name='login'),
+    url(r'^login/$',LoginView.as_view(),name='login'),
 ]

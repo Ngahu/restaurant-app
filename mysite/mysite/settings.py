@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     #my apps
     'restaurants',
     'accounts',
+    'menus',
 ]
 
 AUTH_USER_MODEL = 'accounts.User' #changes the built-in user model to mine 
