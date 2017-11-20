@@ -1,0 +1,25 @@
+{% extends "restaurants/base.html" %}
+{% block content %}
+
+<h4 style="text-align:center;">User Detail</h4>
+<div style="text-align:center;">
+<h3>{{user.full_name}}</h3>
+<hr>
+
+{{user.restaurantlocation_set.all}}
+
+{% for rest in user.restaurantlocation_set.all %}
+    <li>{{rest.title}}
+        <ul>
+            {{rest.item_set.all}}
+        </ul>
+
+    </li>
+
+{% endfor %}
+<br> <hr>
+{{user.item_set.all}}
+</div>
+{% endblock content %}
+
+

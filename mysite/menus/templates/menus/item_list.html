@@ -1,7 +1,7 @@
 {% extends "restaurants/base.html" %}
 {% block content %}
 
-<h4 style="text-align:center;">Menu List View</h4>
+<h4 style="text-align:center;">Menu List View <small class="badge badge-default"><a href="{% url "Menus:create" %}">Add</a></small></h4>
 <div style="text-align:center;">
 {% for obj in object_list %}
 <li><a href="{{ obj.get_absolute_url }}">{{ obj.name }}</a></li>
