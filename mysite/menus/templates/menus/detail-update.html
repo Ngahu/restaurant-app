@@ -1,0 +1,44 @@
+{% extends "restaurants/base.html" %}
+{% block head_title %}
+{{form.instance.name}} |Menu Items
+{% endblock head_title %} 
+{% block content %}
+
+
+<h4 style="text-align:center;">Menu Detail View</h4>
+<div style="text-align:center;">
+    <h3>{{form.instance.name}} <br>
+Location: <small>{{form.instance.restaurant.name}}</small></h3>
+
+    {% if form.instance.contents %}
+    
+    Contents
+            <ol>
+                
+                {% for item in form.instance.get_contents  %}
+                    <li>{{item}}</li>
+                {% endfor %}
+                    
+            </ol>
+            {% endif %}
+
+            {% if form.instance.excludes %}
+
+            Excludes
+            <ol>
+                
+                {% for item in form.instance.get_excludes  %}
+                    <li>{{item}}</li>
+                {% endfor %}
+                    
+            </ol>
+
+            {% endif %}
+            <hr>
+            <h3>Make changes</h3>
+            {% include "restaurants/form-edit.html" with form=form %}
+
+</div>
+{% endblock content %}
+
+
