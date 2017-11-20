@@ -1,0 +1,16 @@
+
+{% block content %}
+
+
+<div style="text-align:center;">
+<h3>{{title}}</h3>
+    <form action="" method="POST"> {% csrf_token %}
+        {{form.as_p}}
+        <input type="Submit" name="SUBMIT" class="btn btn-success">
+
+    </form>
+
+</div>
+{% endblock content %}
+
+

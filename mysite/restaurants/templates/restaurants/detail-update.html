@@ -1,0 +1,16 @@
+{% extends "restaurants/base.html" %}
+{% block content %}
+
+<h4 style="text-align:center;">Restaurant Detail Page</h4>
+<div style="text-align:center;">
+
+<h3>{{form.instance.name}} <small>{{form.instance.category}}</small></h3>
+<p>{{form.instance.location}}</p>
+<p>Added:{{form.instance.timestamp}} <br> Updated:{{form.instance.updated|timesince}} ago</p>
+
+<hr>
+<h3>Make changes</h3>
+{% include "restaurants/form-edit.html" with form=form %}
+{% endblock content %}
+
+
